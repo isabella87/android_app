@@ -1,0 +1,125 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#DCDCDC"
+    android:orientation="vertical" >
+
+    <!-- 顶部 -->
+
+    <com.banhuitong.view.TopBarView
+        android:id="@+id/topbar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <!-- 中间 -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/topbar"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:padding="10dp" >
+
+        <!--
+               <TextView
+              android:id="@+id/tv_mobile"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:gravity="center_horizontal"
+              android:padding="5dp"
+              android:textColor="#000000"
+              android:textSize="20sp" />
+        -->
+
+        <EditText
+            android:id="@+id/et_username"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/bg_edittext"
+            android:ems="10"
+            android:gravity="center"
+            android:hint="请输入用户名或手机号"
+            android:singleLine="true" >
+        </EditText>
+
+        <EditText
+            android:id="@+id/et_password"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/bg_edittext"
+            android:ems="10"
+            android:gravity="center"
+            android:hint="请输入登录密码"
+            android:inputType="textPassword" >
+        </EditText>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="10dp" >
+
+            <TextView
+                android:id="@+id/tv_login"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_style"
+                android:gravity="center"
+                android:padding="5dp"
+                android:text="登录"
+                android:textColor="#FFFAFA"
+                android:textSize="20sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="10dp" >
+
+            <CheckBox
+                android:id="@+id/chk_memorize_username"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="记住登录名"
+                android:textColor="#000000" />
+            
+            <TextView
+                android:id="@+id/tv_findback_pwd"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/round_corner_grey"
+                android:gravity="center"
+                android:padding="5dp"
+                android:layout_marginLeft="20dp"
+                android:text="忘记密码"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal"
+        android:padding="10dp" >
+
+        <TextView
+            android:id="@+id/tv_register"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/round_corner_dark_green"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="注册"
+            android:textColor="#FFFAFA"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+</RelativeLayout>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="android.content.SharedPreferences.Editor"/>
+<fullyQualifiedTypeName name="com.banhuitong.util.HttpUtils"/>
+<fullyQualifiedTypeName name="java.net.CookieManager"/>
+<fullyQualifiedTypeName name="android.webkit.CookieManager"/>
+<fullyQualifiedTypeName name="org.apache.http.cookie.Cookie"/>
+<fullyQualifiedTypeName name="com.banhuitong.http.RequestService"/>
+<fullyQualifiedTypeName name="com.mengcheng.fragment.FooterFragment"/>
+<fullyQualifiedTypeName name="com.tencent.mm.opensdk.constants.Build"/>
+<fullyQualifiedTypeName name="com.mengcheng.activity.R.color"/>
+</qualifiedTypeNameHistroy>

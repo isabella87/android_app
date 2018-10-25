@@ -1,0 +1,494 @@
+
+package com.banhuitong.activity;
+
+import java.io.File;
+
+import android.app.DownloadManager;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.PackageManager.NameNotFoundException;
+import android.graphics.Bitmap;
+import android.net.Uri;
+import android.net.http.SslError;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.text.TextUtils;
+import android.view.KeyEvent;
+import android.view.View;
+import android.webkit.CookieManager;
+import android.webkit.DownloadListener;
+import android.webkit.JavascriptInterface;
+import android.webkit.SslErrorHandler;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
+
+import com.banhuitong.fragment.FooterFragment;
+import com.banhuitong.util.Constants;
+import com.banhuitong.util.ViewUtils;
+import com.handmark.pulltorefresh.library.PullToRefreshWebView;
+
+public class LoginActivity extends BaseActivity {
+	
+	private WebView wvEntDetails;
+	public static final String TAG = "IndexActivity";
+	public Boolean backControl = false;
+	public Boolean backControls = false;
+	public Boolean closeApp = false;
+	public PullToRefreshWebView mPullRefreshWebView;
+	private FooterFragment vFooter;
+	
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.login);
+		
+		vFooter = (FooterFragment) getFragmentManager().findFragmentById(
+				R.id.id_fragment_footer);
+		
+		mPullRefreshWebView = (PullToRefreshWebView) findViewById(R.id.login_ban);
+		wvEntDetails = mPullRefreshWebView.getRefreshableView();
+		
+		
+		wvEntDetails.getSettings().setDomStorageEnabled(true);   
+//		wvEntDetails.getSettings().setAppCacheMaxSize(1024*1024*8);  
+		String appCachePath = getApplicationContext().getCacheDir().getAbsolutePath();  
+		wvEntDetails.getSettings().setAppCachePath(appCachePath);  
+		wvEntDetails.getSettings().setAllowFileAccess(true);  
+		wvEntDetails.getSettings().setAppCacheEnabled(true);
+		
+		init();
+		setListener();
+	}
+	
+	@Override
+	protected void onStart() {
+		super.onStart();
+		CookieManager.getInstance();
+
+		if(!isRestart){
+			toInvest();
+		}	
+	}
+	
+	/* (non-Javadoc)
+	 * @see com.banhuitong.activity.BaseActivity#onRestart()
+	 */
+	@Override
+	protected void onRestart() {
+		super.onRestart();
+	}
+	
+	/* (non-Javadoc)
+	 * @see com.banhuitong.activity.BaseActivity#onPause()
+	 */
+	@Override
+	protected void onPause() {
+		super.onPause();
+	}
+	
+	/* (non-Javadoc)
+	 * @see com.banhuitong.activity.BaseActivity#onResume()
+	 */
+	@Override
+	protected void onResume() {
+		super.onResume();
+		CookieManager.getInstance().flush();
+	}
+
+	private void init() {
+		loading = ViewUtils.initRotateAnimation(this);
+		
+		WebSettings webSettings = wvEntDetails .getSettings();       
+		webSettings.setUseWideViewPort(true);//设置此属性，可任意比例缩放
+		webSettings.setLoadWithOverviewMode(true);
+		webSettings.setJavaScriptEnabled(true);  
+		
+		class JsObject {  
+			 @JavascriptInterface
+		        public void logins(final String username,final String password){  
+				 handler.post(new Runnable() {  
+		                public void run() {  
+		                }  
+		            });  
+		        } 
+			 @JavascriptInterface
+		        public String getVersionName(){  
+					try {
+						PackageManager packageManager = getPackageManager();
+						PackageInfo packInfo;
+						packInfo = packageManager.getPackageInfo(getPackageName(),0);
+						return packInfo.versionName;
+					} catch (NameNotFoundException e) {
+						e.printStackTrace();
+					}
+					return null;
+		        } 
+			 @JavascriptInterface
+		        public void showShares(final String g_rCodeUrl){  
+				 handler.post(new Runnable() {  
+		                public void run() { 
+		                	loading.setVisibility(View.VISIBLE);
+		                	share(g_rCodeUrl);
+		                }  
+		            });  
+		        } 
+			 @JavascriptInterface
+			 public void logouts(){
+				 handler.post(new Runnable() {  
+		                public void run() { 
+		                }
+		            });
+			 }
+	     }  
+	    wvEntDetails.addJavascriptInterface(new JsObject(), "myLogin");  
+	    
+		webSettings.setDefaultTextEncodingName("utf-8");
+		webSettings.setJavaScriptCanOpenWindowsAutomatically(true);
+	}
+	
+	private void setListener() {
+		wvEntDetails.setDownloadListener(new DownloadListener(){
+
+			@Override
+			public void onDownloadStart(String url, String userAgent,
+					String contentDisposition, String mimetype,
+					long contentLength) {
+				
+				// 方法三：指定下载地址
+		        /*DownloadManager.Request request = new DownloadManager.Request(Uri.parse(url));
+		        // 允许媒体扫描，根据下载的文件类型被加入相册、音乐等媒体库
+		        request.allowScanningByMediaScanner();
+		        // 设置通知的显示类型，下载进行时和完成后显示通知
+		        request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
+		        // 设置通知栏的标题，如果不设置，默认使用文件名
+//		        request.setTitle("This is title");
+		        // 设置通知栏的描述
+//		        request.setDescription("This is description");
+		        // 允许在计费流量下下载
+		        request.setAllowedOverMetered(false);
+		        // 允许该记录在下载管理界面可见
+		        request.setVisibleInDownloadsUi(false);
+		        // 允许漫游时下载
+		        request.setAllowedOverRoaming(true);
+		        // 允许下载的网路类型
+		        request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_WIFI);
+		        // 设置下载文件保存的路径和文件名
+		        String fileName  = URLUtil.guessFileName(url, contentDisposition, mimetype);
+//		        log.debug("fileName:{}", fileName);
+		        request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, fileName);
+		        //		        另外可选一下方法，自定义下载路径
+//		        request.setDestinationUri()
+//		        request.setDestinationInExternalFilesDir()
+		        final DownloadManager downloadManager = (DownloadManager) getSystemService(DOWNLOAD_SERVICE);
+		        // 添加一个下载任务
+		        long downloadId = downloadManager.enqueue(request);
+//		        log.debug("downloadId:{}", downloadId);
+		        
+		     // 使用
+		        DownloadCompleteReceiver receiver = new DownloadCompleteReceiver();
+		        IntentFilter intentFilter = new IntentFilter();
+		        intentFilter.addAction(DownloadManager.ACTION_DOWNLOAD_COMPLETE);
+		        registerReceiver(receiver, intentFilter);*/
+		        
+		        //方法四
+		       /* Uri uri = Uri.parse(url);     
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);     
+                startActivity(intent); */
+//				 url = "http://www8.cao.go.jp/okinawa/8/2012/0409-1-1.pdf"; 
+				PullToRefreshWebView pullWebView = (PullToRefreshWebView) findViewById(R.id.download_ban);
+				WebView subWebView = pullWebView.getRefreshableView();
+				subWebView.loadUrl("http://docs.google.com/gview?embedded=true&url="+ url);
+			    wvEntDetails.addView(subWebView);
+			  
+
+			}
+			
+		});
+		
+		
+		wvEntDetails.setWebViewClient(new WebViewClient() {
+			public boolean shouldOverrideUrlLoading(WebView view, String url) {
+				//底部取消
+				vFooter.imgMyAccount
+				.setBackgroundResource(R.drawable.footer_myaccount);
+				vFooter.imgIndex.setBackgroundResource(R.drawable.footer_home);
+				vFooter.imgMain.setBackgroundResource(R.drawable.footer_product);
+				vFooter.imgMore.setBackgroundResource(R.drawable.footer_more);
+				//底部变色
+				if(url.contains("index.html")){
+					vFooter.imgIndex
+					.setBackgroundResource(R.drawable.footer_home_highlight);
+				}else if(url.contains("dbesbsit/app/mobile/apply-success")||url.contains("dbesbsit/app/mobile/applyN")||url.contains("dbesbsit/app/mobile/debtN")||url.contains("m/project")||url.contains("m/creditassign")||url.contains("m/wyjk")){
+					vFooter.imgMain
+					.setBackgroundResource(R.drawable.footer_product_highlight);
+				}else if(url.contains("login")||url.contains("app/mobile/withdrawN")||url.contains("withhold/jump2CP")||url.contains("app/mobile/settingsN")||url.contains("pinset/jump2CP")||url.contains("m/account")||url.contains("m/web")){
+					vFooter.imgMyAccount
+					.setBackgroundResource(R.drawable.footer_myaccount_highlight);
+				}/*else if(isDownloadFile(url)){
+					loadPDF(url);
+				}*/else{
+					vFooter.imgMore
+					.setBackgroundResource(R.drawable.footer_more_highlight);
+				}
+				//跳转返回
+				if(url.contains("app/mobile/settingsN")||url.contains("pinset/jump2CP")){
+					backControl = true;
+				}else{
+					backControl = false;
+				}
+				
+				if(url.contains("app/mobile/withdrawN")||url.contains("withhold/jump2CP")){
+					backControls = true;
+				}else{
+					backControls = false;
+				}
+				//   首页退出程序判断 
+				if(url.contains("index.html")){
+					closeApp = true;
+				}else{
+					closeApp = false;
+				}
+				if(url.contains("weixin.qq")){
+					return false;  
+				}else if(url.contains(Constants.url)){
+
+				}else{
+					return false;  
+				}
+				return false;       
+	         }     
+			
+			private boolean isDownloadFile(String url) {
+				if(url.contains("/ofs/")){
+					return true;
+				}
+				return false;
+			}
+
+			@Override
+			public void onPageFinished(WebView view, String url) { 
+				CookieManager.getInstance().setAcceptCookie(true);
+//				CookieSyncManager.getInstance().sync();  
+//				try {
+//					if(url.contains("account/accountment.html")&&!"1".equals(MyApplication.sp.getString(Constants.CONTROL_COOKIE, ""))){
+//					CookieManager cookieManager = CookieManager.getInstance();
+//					String[] cookies = cookieManager.getCookie(url).split("; ");
+//					String cookieStr = "";
+//					for(int i=0; i<cookies.length;i++){
+//						if(cookies[i].contains("__auth__=")){
+//							cookieStr = cookieManager.getCookie(url).split("; ")[i]+
+//									 "; domain=" + Constants.url
+//									+ "; path=/" ;
+//							break;
+//						}
+//					}
+//					 Editor ed = MyApplication.sp.edit();
+//					 ed.putString(Constants.SAVED_COOKIE, cookieStr);
+//					 if(!"".equals(cookieStr)){
+//					 ed.putString(Constants.CONTROL_COOKIE, "1");
+//					 }
+//					 ed.commit();
+//					}
+//					if(url.contains("login.html")){
+//						 Editor ed = MyApplication.sp.edit();
+//						 ed.putString(Constants.SAVED_COOKIE, "");
+//						 ed.putString(Constants.CONTROL_COOKIE, "0");
+//						 ed.putString(Constants.USER_NAME, "");
+//		            	 ed.putString(Constants.USER_PASS, "");
+//						 ed.commit();
+//					}
+//				} catch (Exception e) {
+//					e.printStackTrace(); 
+//				}
+				loading.setVisibility(View.GONE);
+				super.onPageFinished(view, url); 
+			} 
+		   
+		   @Override
+		   public void onPageStarted(WebView view, String url, Bitmap favicon) { 
+			   loading.setVisibility(View.VISIBLE);
+			   super.onPageStarted(view, url, favicon); 
+		   } 
+		   
+		   @Override
+		   public void onLoadResource(WebView view, String url) { 
+			   super.onLoadResource(view, url); 
+		   } 
+			
+			public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError error) {
+//				handler.cancel(); //默认的处理方式，WebView变成空白页
+				handler.proceed(); // 接受证书
+			}
+        });
+	}
+	
+	 @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        // TODO Auto-generated method stub
+        if(keyCode==KeyEvent.KEYCODE_BACK)
+        {
+            if(wvEntDetails.canGoBack())
+            {
+            	if(backControl){
+            		String url = Constants.mobileUrl + "account/jxpay-info.html";
+            		 
+            		newpath(url);
+            	}else if(backControls){
+            		String url = Constants.mobileUrl + "account/withdraw.html";
+            		newpath(url);
+            	//	wvEntDetails.loadUrl(url);
+            	}else if(closeApp){
+            		android.os.Process.killProcess(android.os.Process.myPid()); 
+            	}else{
+            		wvEntDetails.goBack();//返回上一页面
+            	}
+                return true;
+                }
+            else
+            {
+            	LoginActivity.this.finish();
+            	return true;
+            }
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+	 
+	 /**
+	  * 跳转页面
+	  * @param url
+	  */
+	 public void newpath(final String url){
+		 if(url.contains("index.html")){
+				closeApp = true;
+			}else{
+				closeApp = false;
+			}
+		 CookieManager.getInstance().setAcceptCookie(true);
+		wvEntDetails.loadUrl(url);
+	 }
+	 
+	private void toInvest(){
+		String url = Constants.mobileUrl + "account/accountment.html";	
+		newpath(url);
+	}
+	
+	Handler handler = new Handler() {
+		@Override
+		public void handleMessage(Message msg) {
+			super.handleMessage(msg);
+		}
+	};
+	
+	/**
+	 * 
+	 *版本比较
+	 * @param localVersion
+	 * @param version
+	 * @return
+	 * @throws Exception
+	 */
+	protected boolean equalsVersion(String localVersion, String version) throws Exception {
+		String[] lv = localVersion.split("\\.");
+		String[] v = version.split("\\.");
+		int lv0 = Integer.parseInt(lv[0]);
+		int lv1 = Integer.parseInt(lv[1]);
+		int lv2 = Integer.parseInt(lv[2]);
+		int v0 = Integer.parseInt(v[0]);
+		int v1 = Integer.parseInt(v[1]);
+		int v2 = Integer.parseInt(v[2]);
+		if(v0>lv0){
+			return true;
+		}else if(v1>lv1&&v0==lv0){
+			return true;
+		}else if(v2>lv2&&v0==lv0&&v1==lv1){
+			return true;
+		}
+		return false;
+	}
+
+	// 安装apk
+	protected void installApk(File file) {
+		Intent intent = new Intent();
+		intent.setAction(Intent.ACTION_VIEW);
+		intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+		intent.setDataAndType(Uri.fromFile(file),
+				"application/vnd.android.package-archive");
+		startActivity(intent);
+		android.os.Process.killProcess(android.os.Process.myPid());
+	}
+	
+	private class DownloadCompleteReceiver extends BroadcastReceiver {
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+//            log.verbose("onReceive. intent:{}", intent != null ? intent.toUri(0) : null);
+            if (intent != null) {
+                if (DownloadManager.ACTION_DOWNLOAD_COMPLETE.equals(intent.getAction())) {
+                    long downloadId = intent.getLongExtra(DownloadManager.EXTRA_DOWNLOAD_ID, -1);
+//                    log.debug("downloadId:{}", downloadId);
+                    DownloadManager downloadManager = (DownloadManager) context.getSystemService(DOWNLOAD_SERVICE);
+                    String type = downloadManager.getMimeTypeForDownloadedFile(downloadId);
+//                    log.debug("getMimeTypeForDownloadedFile:{}", type);
+                    if (TextUtils.isEmpty(type)) {
+                        type = "*/*";
+                    }
+                    Uri uri = downloadManager.getUriForDownloadedFile(downloadId);
+//                    log.debug("UriForDownloadedFile:{}", uri);
+                    if (uri != null) {
+                        Intent handlerIntent = new Intent(Intent.ACTION_VIEW);
+                        handlerIntent.setDataAndType(uri, type);
+                        context.startActivity(handlerIntent);
+                    }
+                }
+            }
+        }
+    }
+
+	
+	private void loadPDF(String url) {  
+		wvEntDetails.getSettings().setJavaScriptEnabled(true);  
+		wvEntDetails.getSettings().setSupportZoom(true);  
+		wvEntDetails.getSettings().setDomStorageEnabled(true);  
+		wvEntDetails.getSettings().setAllowFileAccess(true);  
+		wvEntDetails.getSettings().setUseWideViewPort(true);  
+		wvEntDetails.getSettings().setBuiltInZoomControls(true);  
+		wvEntDetails.requestFocus();  
+		wvEntDetails.getSettings().setLoadWithOverviewMode(true);  
+        url = "http://www8.cao.go.jp/okinawa/8/2012/0409-1-1.pdf";  
+        wvEntDetails.loadUrl("http://docs.google.com/gview?embedded=true&url="+ url);  
+  
+        wvEntDetails.setWebViewClient(new WebViewClient() {  
+            @Override  
+            public void onPageStarted(WebView view, String url, Bitmap favicon) {  
+                super.onPageStarted(view, url, favicon);  
+            }  
+  
+            @Override  
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {  
+                view.loadUrl(url);  
+                return true;  
+            }  
+  
+            @Override  
+            public void onPageFinished(WebView view, String url) {  
+                super.onPageFinished(view, url);  
+  
+            }  
+  
+            @Override  
+            public void onReceivedError(WebView view, int errorCode,  
+                    String description, String failingUrl) {  
+                super.onReceivedError(view, errorCode, description, failingUrl);  
+  
+            }  
+  
+        });  
+   
+  
+    }  
+}

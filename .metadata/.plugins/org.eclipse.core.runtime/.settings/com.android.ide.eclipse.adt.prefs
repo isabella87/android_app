@@ -1,0 +1,8 @@
+com.android.ide.eclipse.adt.attrSort=logical
+com.android.ide.eclipse.adt.customDebugKeyStore=F\:\\work\\\u4EFB\u52A1\u6587\u6863_2016\\01\\debug.keystore
+com.android.ide.eclipse.adt.fixLegacyEditors=1
+com.android.ide.eclipse.adt.lintOnExport=false
+com.android.ide.eclipse.adt.lintOnSave=false
+com.android.ide.eclipse.adt.sdk=D\:\\adt5.0\\sdk
+com.android.ide.eclipse.adt.xmlEditor=true
+eclipse.preferences.version=1

@@ -1,0 +1,151 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#DCDCDC"
+    android:orientation="vertical" >
+
+   <!-- 中间 -->
+ 	<com.banhuitong.view.MyScrollView
+ 	    android:id="@+id/srv_main"
+ 	    android:layout_below="@+id/topbar"
+ 	    android:layout_width="match_parent"
+ 	    android:layout_height="wrap_content" >
+	    
+     <LinearLayout
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+            android:orientation="vertical" >
+            
+         <RelativeLayout
+             android:id="@+id/layer_share"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:background="@drawable/border_bottom"
+             android:descendantFocusability="blocksDescendants"
+             android:gravity="center_vertical"
+             android:minHeight="60dp" >
+
+             <TextView
+                 android:id="@+id/tv_share"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_marginLeft="15dp"
+                 android:gravity="center_vertical"
+                 		 android:text="分享班汇通"
+                 android:textColor="@color/dark_red"
+                 android:textSize="23sp"
+                 android:textStyle="bold|italic" />
+
+             <TextView
+                 android:layout_width="wrap_content"
+                 android:layout_height="match_parent"
+                 android:layout_alignParentRight="true"
+                 android:layout_marginRight="20dp"
+                 android:background="@drawable/arrow"
+                 android:textColor="#000000"
+                 android:textSize="20sp" />
+         </RelativeLayout>
+            
+         <RelativeLayout
+             android:id="@+id/layer_aboutus"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:background="@drawable/border_bottom"
+             android:descendantFocusability="blocksDescendants"
+             android:gravity="center_vertical"
+             android:minHeight="60dp" >
+
+             <TextView
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_marginLeft="15dp"
+                 android:gravity="center_vertical"
+                 		 android:text="了解我们"
+                 android:textColor="@color/thick_grey"
+                 android:textSize="18sp" />
+
+             <TextView
+                 android:layout_width="wrap_content"
+                 android:layout_height="match_parent"
+                 android:layout_alignParentRight="true"
+                 android:layout_marginRight="20dp"
+                 android:background="@drawable/arrow"
+                 android:textColor="#000000"
+                 android:textSize="20sp" />
+         </RelativeLayout>
+         
+         <RelativeLayout
+             android:id="@+id/layer_reg_video"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:background="@drawable/border_bottom"
+             android:descendantFocusability="blocksDescendants"
+             android:visibility="gone"
+             android:gravity="center_vertical"
+             android:minHeight="60dp" >
+
+             <TextView
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_marginLeft="15dp"
+                 android:gravity="center_vertical"
+                 android:text="注册流程视频演示"
+                 android:textColor="@color/thick_grey"
+                 android:textSize="18sp" />
+
+             <TextView
+                 android:layout_width="wrap_content"
+                 android:layout_height="match_parent"
+                 android:layout_alignParentRight="true"
+                 android:layout_marginRight="20dp"
+                 android:background="@drawable/arrow"
+                 android:textColor="#000000"
+                 android:textSize="20sp" />
+         </RelativeLayout>
+         
+         <RelativeLayout
+             android:id="@+id/layer_about"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:background="@drawable/border_bottom"
+             android:descendantFocusability="blocksDescendants"
+             android:gravity="center_vertical"
+             android:minHeight="60dp" >
+
+             <TextView
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_marginLeft="15dp"
+                 android:gravity="center_vertical"
+                 android:text="关于"
+                 android:textColor="@color/thick_grey"
+                 android:textSize="18sp" />
+
+             <TextView
+                 android:layout_width="wrap_content"
+                 android:layout_height="match_parent"
+                 android:layout_alignParentRight="true"
+                 android:layout_alignTop="@+id/textView1"
+                 android:layout_marginRight="20dp"
+                 android:background="@drawable/arrow"
+                 android:textColor="#000000"
+                 android:textSize="20sp" />
+         </RelativeLayout>
+         
+         <RelativeLayout
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:layout_marginTop="20dp"
+             >
+             <ImageView
+	             android:id="@+id/image_rcode"
+	             android:layout_width="200dp"
+	             android:layout_height="200dp"
+	             android:layout_centerInParent="true"
+	             android:scaleType="fitXY"/>
+         </RelativeLayout>
+
+	</LinearLayout>
+	</com.banhuitong.view.MyScrollView>
+        
+</RelativeLayout>

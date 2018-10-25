@@ -1,0 +1,13 @@
+package com.mengcheng.util;
+
+
+import android.content.Context;
+import android.content.Intent;
+
+public class ActivityUtils {
+	
+	public static void startIntent(Context context, Class c) {
+		Intent intent = new Intent(context, c);
+		context.startActivity(intent);
+	}
+}

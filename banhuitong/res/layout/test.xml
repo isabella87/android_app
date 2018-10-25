@@ -1,0 +1,32 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#DCDCDC"
+    android:orientation="vertical" >
+	    
+     <LinearLayout
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+            android:orientation="vertical" >
+         
+         <RelativeLayout
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:background="@drawable/border_bottom"
+             android:gravity="center_vertical"
+             android:minHeight="60dp" >
+
+             <TextView
+                  android:id="@+id/tv_cp"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_marginLeft="10dp"
+                 android:text="中国银联"
+                 android:textColor="@color/thick_grey"
+                 android:textSize="18sp" />
+    
+         </RelativeLayout> 
+
+	</LinearLayout>
+	
+</RelativeLayout>

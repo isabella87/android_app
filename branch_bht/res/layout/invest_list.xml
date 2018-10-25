@@ -1,0 +1,112 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#DCDCDC"
+    android:orientation="vertical" >
+
+    <!-- 顶部 -->
+     <com.banhuitong.view.TopBarView 
+          android:id="@+id/topbar" 
+           android:layout_width="wrap_content" 
+           android:layout_height="wrap_content" />   
+    
+    <!-- 中间 -->
+ 	<ScrollView
+ 	    android:id="@+id/scroll_view"
+ 	    android:layout_below="@+id/topbar"
+ 	    android:layout_width="match_parent"
+ 	    android:layout_height="wrap_content" >
+	    
+     <RelativeLayout
+         android:id="@+id/main"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+            android:orientation="vertical" >
+         
+         <RelativeLayout
+             android:id="@+id/layer_gong"
+             android:descendantFocusability="blocksDescendants"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:background="@drawable/border_bottom"
+             android:gravity="center_vertical"
+             android:minHeight="60dp" >
+
+             <ImageView
+                 android:id="@+id/img_gong"
+                 android:layout_width="40dp"
+                 android:layout_height="40dp"
+                 android:layout_marginLeft="10dp"
+                 android:src="@drawable/icon_gong" />
+
+             <TextView
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_alignBottom="@+id/img_gong"
+                 android:layout_alignTop="@+id/img_gong"
+                 android:layout_marginLeft="10dp"
+                 android:layout_toRightOf="@+id/img_gong"
+                 android:gravity="center_vertical"
+                 android:text="项目出借"
+                 android:textColor="@color/thick_grey"
+                 android:textSize="18sp" />
+             
+             <TextView
+                 android:layout_width="wrap_content"
+                 android:layout_height="match_parent"
+                 android:layout_alignParentRight="true"
+                 android:layout_marginTop="10dp"
+                 android:layout_marginRight="10dp"
+                 android:background="@drawable/arrow"
+                 android:textColor="#000000"
+                 android:textSize="20sp" />
+
+         </RelativeLayout>
+         
+         
+         <RelativeLayout
+             android:id="@+id/layer_zhuan"
+             android:descendantFocusability="blocksDescendants"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:layout_below="@+id/layer_bao"
+             android:background="@drawable/border_bottom"
+             android:gravity="center_vertical"
+             android:minHeight="60dp" 
+             android:visibility="visible">
+             
+              <ImageView
+                 android:id="@+id/img_zhuan"
+                 android:layout_width="40dp"
+                 android:layout_height="40dp"
+                 android:layout_marginLeft="10dp"
+                 android:src="@drawable/icon_zhuan" />
+
+             <TextView
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_alignBottom="@+id/img_zhuan"
+                 android:layout_alignTop="@+id/img_zhuan"
+                 android:layout_marginLeft="10dp"
+                 android:layout_toRightOf="@+id/img_zhuan"
+                 android:gravity="center_vertical"
+                 android:text="债权转让"
+                 android:textColor="@color/thick_grey"
+                 android:textSize="18sp" />
+             
+			<TextView
+                 android:layout_width="wrap_content"
+                 android:layout_height="match_parent"
+                 android:layout_alignParentRight="true"
+                 android:layout_marginTop="10dp"
+                 android:layout_marginRight="10dp"
+                 android:background="@drawable/arrow"
+                 android:textColor="#000000"
+                 android:textSize="20sp" />
+
+         </RelativeLayout>
+
+	</RelativeLayout>
+	</ScrollView>
+	
+</RelativeLayout>

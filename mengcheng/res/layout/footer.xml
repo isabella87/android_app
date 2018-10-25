@@ -1,0 +1,98 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+       	 android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/head_bg"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingTop="3dp" >
+		
+        <LinearLayout
+            android:id="@+id/ll_index"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+             <ImageView
+                 android:id="@+id/img_index"
+                android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+                 android:padding="5dp"/>
+	
+	         <TextView
+	             android:id="@+id/firstView"
+	             android:layout_width="wrap_content"
+	             android:layout_height="wrap_content"
+	             android:text="首页"
+	             android:textColor="#FFFAFA" />
+        </LinearLayout>
+        
+        <LinearLayout
+            android:id="@+id/ll_main"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+             <ImageView
+	             android:id="@+id/img_main"
+	            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+	             android:padding="5dp"/>
+	
+	         <TextView
+	             android:id="@+id/lendView"
+	             android:layout_width="wrap_content"
+	             android:layout_height="wrap_content"
+	             android:text="点兵点将"
+	             android:textColor="#FFFAFA" />
+        </LinearLayout>
+        
+        <LinearLayout
+            android:id="@+id/ll_acc"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+             <ImageView
+	             android:id="@+id/img_acc"
+	             android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+	             android:padding="5dp"/>
+	
+	         <TextView
+	             android:id="@+id/accountView"
+	             android:layout_width="wrap_content"
+	             android:layout_height="wrap_content"
+	             android:text="账户中心"
+	             android:textColor="#FFFAFA" />
+        </LinearLayout>
+        
+        <LinearLayout
+            android:id="@+id/ll_more"
+	        android:layout_width="0dp"
+	        android:layout_height="wrap_content"
+	        android:layout_weight="1"
+	        android:gravity="center"
+	        android:orientation="vertical" >
+	         
+             <ImageView
+	             android:id="@+id/img_more"
+	            android:layout_width="wrap_content"
+            	android:layout_height="wrap_content"
+	             android:padding="5dp"/>
+	
+	         <TextView
+	             android:id="@+id/moreView"
+	             android:layout_width="wrap_content"
+	             android:layout_height="wrap_content"
+	             android:text="更多"
+	             android:textColor="#FFFAFA" />
+        </LinearLayout>
+
+</LinearLayout>

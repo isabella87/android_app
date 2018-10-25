@@ -1,0 +1,316 @@
+package com.banhuitong.util;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.text.DateFormat;
+import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
+
+import android.app.Activity;
+import android.content.Context;
+import android.content.res.Resources;
+import android.content.res.Resources.NotFoundException;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.ViewGroup.LayoutParams;
+import android.view.animation.Animation;
+import android.view.animation.LinearInterpolator;
+import android.view.animation.RotateAnimation;
+import android.widget.ImageView;
+import android.widget.Toast;
+
+import com.banhuitong.activity.MyApplication;
+import com.banhuitong.activity.R;
+import com.banhuitong.inf.MyDialogInterface;
+import com.banhuitong.view.MyAlertDialog;
+import com.banhuitong.view.SystemAlertDialog;
+
+public class ViewUtils {
+
+	public static boolean isShowingDialog = false;
+	public static Toast _toast;
+
+	public static DecimalFormat mformat = new DecimalFormat("#,##0.##");
+	public static DecimalFormat mformat2 = new DecimalFormat("#,##0.00");
+	public static DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+
+	public static View initRotateAnimation(Activity activity) {
+		// 加载 布局
+		LayoutInflater inflater = (LayoutInflater) activity
+				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		// 加载布局
+		View loading = inflater.inflate(R.layout.loding, null);
+		// 设置不可见
+		loading.setVisibility(View.GONE);
+		// 获取 旋转的 控件
+		ImageView iv = (ImageView) loading.findViewById(R.id.loding_iv);
+		// 给当前页面添加 旋转View
+		activity.addContentView(loading, new LayoutParams(
+				LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
+
+		LinearInterpolator lin = new LinearInterpolator();
+		RotateAnimation am = new RotateAnimation(+360, 0,
+				Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF,
+				0.5f);
+
+		// 动画开始到结束的执行时间(1000 = 1 秒)
+		am.setDuration(1000);
+
+		// 动画重复次数(-1 表示一直重复)
+		am.setRepeatCount(-1);
+		am.setRepeatCount(Animation.INFINITE);
+		am.setInterpolator(lin);
+
+		// 设置为匀速
+		iv.setAnimation(am);
+		// 图片配置动画
+		// ((ImageView)findViewById(R.id.footer_iv)).setAnimation(am);
+		am.startNow();
+
+		return loading;
+	}
+
+	// 显示确定 取消按钮
+	// 0为全显示
+	// 1为显示确定
+	// 2为显示取消
+	// 3 为自由选择确认取消的名称
+	public final static int Button_type_all = 0;
+	public final static int Button_type_sure = 1;
+	public final static int Button_type_cancel = 2;
+	public final static int Button_type_confirm = 3;
+
+	public static void showDialog(String confirm, String cancel, String title,
+			String message, Context context, int type,
+			final MyDialogInterface dialogInterface) {
+		if (isShowingDialog) {
+			return;
+		}
+		isShowingDialog = true;
+
+		try {
+			final MyAlertDialog ad = new MyAlertDialog(context);
+			ad.setTitle(title);
+			ad.setMessage(message);
+
+			switch (type) {
+			case Button_type_all:
+				ad.setPositiveButton("确认", new OnClickListener() {
+					@Override
+					public void onClick(View arg0) {
+						if (dialogInterface != null) {
+							dialogInterface.onButtonSure();
+						}
+						ad.dismiss();
+						isShowingDialog = false;
+					}
+				});
+
+				ad.setNegativeButton("取消", new OnClickListener() {
+					@Override
+					public void onClick(View arg0) {
+						if (dialogInterface != null) {
+							dialogInterface.onButtonCancel();
+						}
+						ad.dismiss();
+						isShowingDialog = false;
+					}
+				});
+
+				break;
+			case Button_type_sure:
+				ad.setPositiveButton("确认", new OnClickListener() {
+					public void onClick(View arg0) {
+						if (dialogInterface != null) {
+							dialogInterface.onButtonSure();
+						}
+						ad.dismiss();
+						isShowingDialog = false;
+					}
+				});
+				break;
+			case Button_type_cancel:
+				ad.setNegativeButton("取消", new OnClickListener() {
+					@Override
+					public void onClick(View arg0) {
+						if (dialogInterface != null) {
+							dialogInterface.onButtonCancel();
+						}
+						ad.dismiss();
+						isShowingDialog = false;
+					}
+				});
+				break;
+			case Button_type_confirm:
+				ad.setPositiveButton("我知道了", new OnClickListener() {
+					@Override
+					public void onClick(View arg0) {
+						if (dialogInterface != null) {
+							dialogInterface.onButtonSure();
+						}
+						ad.dismiss();
+						isShowingDialog = false;
+					}
+				});
+				break;
+			default:
+				isShowingDialog = false;
+			}
+		} catch (Exception e) {
+
+		} finally {
+			isShowingDialog = false;
+		}
+	}
+
+	public static void showSystemDialog(String title, String message,
+			Context context, int type, final MyDialogInterface dialogInterface) {
+		if (isShowingDialog) {
+			return;
+		}
+		isShowingDialog = true;
+
+		try {
+			final SystemAlertDialog ad = new SystemAlertDialog(context);
+			ad.setTitle(title);
+			ad.setMessage(message);
+
+			switch (type) {
+			case Button_type_confirm:
+				ad.setPositiveButton("我知道了", new OnClickListener() {
+					@Override
+					public void onClick(View arg0) {
+						if (dialogInterface != null) {
+							dialogInterface.onButtonSure();
+						}
+						ad.dismiss();
+						isShowingDialog = false;
+					}
+				});
+				break;
+			default:
+				isShowingDialog = false;
+			}
+		} catch (Exception e) {
+
+		} finally {
+			isShowingDialog = false;
+		}
+	}
+
+	public static int[] getLocation(View v) {
+		int[] loc = new int[4];
+		int[] location = new int[2];
+		v.getLocationOnScreen(location);
+		loc[0] = location[0];
+		loc[1] = location[1];
+		int w = View.MeasureSpec.makeMeasureSpec(0,
+				View.MeasureSpec.UNSPECIFIED);
+		int h = View.MeasureSpec.makeMeasureSpec(0,
+				View.MeasureSpec.UNSPECIFIED);
+		v.measure(w, h);
+
+		loc[2] = v.getMeasuredWidth();
+		loc[3] = v.getMeasuredHeight();
+
+		return loc;
+	}
+
+	public static Bitmap dissectBackground(Bitmap rawBitmap) {
+		Bitmap newBitmap;
+
+		int rawHeight = rawBitmap.getHeight();
+		int rawWidth = rawBitmap.getWidth();
+		int screenHeight = MyApplication.screen_h;
+		int screenWidth = MyApplication.screen_w;
+
+		float ratio = (float) screenWidth / screenHeight;
+		float ratio2 = (float) rawWidth / rawHeight;
+
+		Matrix matrix = new Matrix();
+		matrix.postScale(1.05f, 1);
+
+		int x = 0;
+		if (ratio <= ratio2) {
+			x = rawWidth - (int) (rawHeight * ratio);
+			newBitmap = Bitmap.createBitmap(rawBitmap, x / 2, 0,
+					(int) (rawHeight * ratio), rawHeight, matrix, true);
+		} else {
+			newBitmap = Bitmap.createBitmap(rawBitmap, 0,
+					(int) (rawHeight - rawWidth / ratio) / 2, rawWidth,
+					(int) (rawWidth / ratio), matrix, true);
+		}
+
+		return newBitmap;
+	}
+
+	public static Bitmap readBitMap(Context context, int resId, Resources res) {
+
+		BitmapFactory.Options opt = new BitmapFactory.Options();
+		opt.inJustDecodeBounds = true;
+		BitmapFactory.decodeResource(res, resId, opt);
+		/*int imageHeight = opt.outHeight;
+		int imageWidth = opt.outWidth;*/
+
+		InputStream is = res.openRawResource(resId);
+		try {
+			opt.inPreferredConfig = Bitmap.Config.RGB_565;
+			/*opt.inPurgeable = true;
+			opt.inInputShareable = true;*/
+			opt.inSampleSize = 1;
+			opt.inJustDecodeBounds = false;
+
+			return BitmapFactory.decodeStream(is, null, opt);
+		} catch (NotFoundException e) {
+			e.printStackTrace();
+			return null;
+		} finally {
+			if (is != null)
+				try {
+					is.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+		}
+	}
+
+	public static void saveBitmap(Bitmap bm, String path, String fileName) {
+		File d = new File(path);
+		if (!d.exists()) {
+			d.mkdir();
+		}
+		File f = new File(path + fileName);
+		if (f.exists()) {
+			f.delete();
+		}
+		try {
+			f.createNewFile();
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+		FileOutputStream fOut = null;
+		try {
+			fOut = new FileOutputStream(f);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		bm.compress(Bitmap.CompressFormat.PNG, 100, fOut);
+		try {
+			fOut.flush();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		try {
+			fOut.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+}

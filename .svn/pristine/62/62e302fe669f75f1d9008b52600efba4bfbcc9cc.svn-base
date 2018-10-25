@@ -1,0 +1,45 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#DCDCDC"
+    android:orientation="vertical" >
+
+    <!-- 顶部 -->
+    <com.banhuitong.view.TopBarView 
+          android:id="@+id/topbar" 
+           android:layout_width="wrap_content" 
+           android:layout_height="wrap_content" />  
+    
+    <!-- 中间 -->
+     <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:layout_below="@+id/topbar"
+        android:padding="10dp">
+
+         <EditText
+             android:id="@+id/dt_mobile"
+             android:layout_width="match_parent"
+             android:layout_height="50dp"
+             android:layout_marginBottom ="10dp"
+             android:background="@drawable/bg_edittext"  
+             android:ems="10"
+             	android:hint="请输入您的手机号"
+              android:gravity="center"
+             android:inputType="numberSigned" />
+
+         <TextView
+             android:id="@+id/tv_next"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:gravity="center"
+             android:padding="5dp"
+             android:text="下一步"
+             android:textColor="#FFFAFA"
+             android:background="@drawable/red_round"
+             android:textSize="20sp" />
+         
+	</LinearLayout>
+</RelativeLayout>

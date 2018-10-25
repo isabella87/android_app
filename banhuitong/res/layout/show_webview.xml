@@ -1,0 +1,25 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <!-- 顶部 -->
+    <com.banhuitong.view.TopBarView 
+          android:id="@+id/topbar" 
+           android:layout_width="wrap_content" 
+           android:layout_height="wrap_content" />
+
+    <ImageView
+        android:id="@+id/img_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        android:src="@drawable/abc_ab_bottom_solid_dark_holo" />
+    
+    <WebView 
+	    android:layout_width="match_parent"
+	    android:layout_height="match_parent"
+	    android:layout_below="@+id/topbar"
+	    android:id="@+id/wv_main"/>
+	
+</RelativeLayout>

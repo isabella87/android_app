@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+     <color name="blue">#104782</color>
+     <color name="light_blue">#2fd0f8</color>
+     <color name="black">#000000</color>
+     <color name="dark_red">#B22222</color>
+     <color name="white">#FFFFFF</color>
+     <color name="grey">#DCDCDC</color>
+     <color name="thick_grey">#696969</color>
+     <color name="dark_green">#008B45</color>
+     <color name="red">#FF0000</color>
+     <color name="pink">#ffccff</color>
+     <color name="light_orange">#FFEC8B</color>
+     
+     <!-- Chinapay plugin begin -->
+	<color name="cp_light_white">#ffffff</color>
+	<color name="cp_red">#FF0000</color>
+	<!-- Chinapay plugin end -->
+</resources>

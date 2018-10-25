@@ -1,0 +1,96 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"  
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#DCDCDC"
+    android:orientation="vertical" >
+    
+    <!-- 顶部 -->
+    <com.banhuitong.view.TopBarView 
+          android:id="@+id/topbar" 
+           android:layout_width="wrap_content" 
+           android:layout_height="wrap_content" />  
+    
+    <!-- 中间 -->
+    <LinearLayout
+        android:id="@+id/middle_tab" 
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal"
+        android:paddingBottom="5dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:paddingTop="5dp"
+        android:layout_below="@+id/topbar" >
+
+        <RadioGroup
+            android:id="@+id/tabs_rg"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:gravity="center"
+            android:orientation="horizontal" >
+
+            <RadioButton
+                android:id="@+id/tab_rb_financing"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1.0"
+                android:background="@drawable/main_tab"
+                android:button="@null"
+                android:checked="true"
+                android:gravity="center"
+                android:singleLine="true"
+                android:text="正在投标"
+                android:textColor="#FF0033" />
+
+            <RadioButton
+                android:id="@+id/tab_rb_repaying"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1.0"
+                android:background="@drawable/main_tab"
+                android:button="@null"
+                android:gravity="center"
+                android:singleLine="true"
+                android:text="还款中"
+                android:textColor="#FF0033" />
+
+            <RadioButton
+                android:id="@+id/tab_rb_repayover"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1.0"
+                android:background="@drawable/main_tab"
+                android:button="@null"
+                android:gravity="center"
+                android:singleLine="true"
+                android:text="还款完成"
+                android:textColor="#FF0033" />
+            
+            <RadioButton
+                android:id="@+id/tab_rb_failed"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1.0"
+                android:background="@drawable/main_tab"
+                android:button="@null"
+                android:gravity="center"
+                android:singleLine="true"
+                android:text="投标失败"
+                android:textColor="#FF0033" />
+        </RadioGroup>
+    </LinearLayout>
+
+    <com.banhuitong.view.MyListView
+        android:id="@+id/lv_invest"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:divider="#DCDCDC"
+        android:dividerHeight="10dp"
+        android:background="#DCDCDC"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp" 
+        android:layout_below="@+id/middle_tab" 
+        android:layout_above="@+id/id_fragment_footer"/>
+    
+</RelativeLayout>

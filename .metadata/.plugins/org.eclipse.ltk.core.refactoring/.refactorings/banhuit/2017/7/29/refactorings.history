@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;banhuit/src/com/banhuitong/async/LoginTask.java.bak&apos; to &apos;LoginTask.java&apos;" description="Rename resource &apos;LoginTask.java.bak&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="src/com/banhuitong/async/LoginTask.java.bak" name="LoginTask.java" stamp="1500370038797" updateReferences="true"/>
+</session>

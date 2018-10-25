@@ -1,0 +1,105 @@
+package com.banhui.appsrv.account;
+
+import org.apache.commons.lang3.StringUtils;
+
+public abstract class Account {
+
+	private final String loginName;
+
+	private final String realName;
+
+	private final String mobile;
+
+	private final AccountStatus status;
+	
+	private final AccountType userType;
+	
+	private final Long allowInvest;
+	
+	private final Long allowBorrow;
+	
+	public static final Account NONE = new NullAccount();
+
+	/**
+	 * 
+	 * @param loginName
+	 * @param realName
+	 * @param mobile
+	 * @param status
+	 */
+	protected Account(final String loginName, final String realName,
+			final String mobile, final AccountStatus status,final AccountType userType,final Long allowInvest, final Long allowBorrow) {
+		this.loginName = loginName == null ? "" : loginName.trim();
+		this.realName = realName == null ? "" : realName.trim();
+		this.mobile = mobile == null ? "" : mobile.trim();
+		this.status = status;
+		this.userType = userType;
+		this.allowInvest = allowInvest;
+		this.allowBorrow = allowBorrow;
+	}
+	
+	public AccountType getUserType() {
+		return userType;
+	}
+
+	/**
+	 * 
+	 * @return
+	 */
+	public final boolean isValid() {
+		return !this.loginName.isEmpty();
+	}
+
+	/**
+	 * @return the loginName
+	 */
+	public final String getLoginName() {
+		return this.loginName;
+	}
+
+	/**
+	 * @return the realName
+	 */
+	public final String getRealName() {
+		return this.realName;
+	}
+
+	/**
+	 * @return the mobile
+	 */
+	public final String getMobile() {
+		if(!this.mobile.equals("")){
+			return StringUtils.substring(this.mobile, 0,3)+"****"+StringUtils.substring(this.mobile, 7,11);
+		}else{
+			return "";
+		}
+	}
+
+	/**
+	 * 
+	 * @return
+	 */
+	public final AccountStatus getStatus() {
+		return this.status;
+	}
+
+	public Long getAllowInvest() {
+		return allowInvest;
+	}
+
+	public Long getAllowBorrow() {
+		return allowBorrow;
+	}
+
+}
+
+class NullAccount extends Account {
+
+	/**
+	 * 
+	 */
+	protected NullAccount() {
+		super("", "", "", null,null,null,null);
+	}
+
+}

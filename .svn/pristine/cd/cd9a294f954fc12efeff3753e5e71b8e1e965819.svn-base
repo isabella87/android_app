@@ -1,0 +1,16 @@
+/*package com.banhuitong.async;
+
+*//**
+ * 基础Task
+ * @author Administrator
+ *
+ *//*
+public abstract class BaseTask implements Runnable {
+	protected String username = "", password = "";
+	
+	protected BaseTask(){
+		this.username = MyApplication.sp.getString(Constants.USER_NAME, "");
+		this.password = MyApplication.sp.getString(Constants.USER_PASS, "");
+	}
+}
+*/

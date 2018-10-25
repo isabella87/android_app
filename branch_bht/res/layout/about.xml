@@ -1,0 +1,220 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#DCDCDC"
+    android:orientation="vertical" >
+
+    <!-- 顶部 -->
+     <com.banhuitong.view.TopBarView 
+          android:id="@+id/topbar" 
+           android:layout_width="wrap_content" 
+           android:layout_height="wrap_content" />
+    
+    <!-- 中间 -->
+ 	<com.banhuitong.view.MyScrollView
+ 	    android:id="@+id/srv_main"
+ 	    android:layout_below="@+id/topbar"
+ 	    android:layout_width="match_parent"
+ 	    android:layout_height="wrap_content" >
+	    
+     <LinearLayout
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+            android:orientation="vertical" >
+         
+         <RelativeLayout
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:background="@drawable/border_bottom"
+             android:gravity="center_vertical"
+             android:minHeight="60dp" >
+
+             <TextView
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_marginLeft="10dp"
+                 android:text="版本"
+                 android:textColor="@color/thick_grey"
+                 android:textSize="18sp" />
+             
+             <TextView
+                 android:id="@+id/tv_version"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_alignParentRight="true"
+                 android:layout_marginRight="10dp"
+                 android:textColor="#B22222"
+                 android:textSize="18sp" />
+         </RelativeLayout> 
+         
+         <RelativeLayout
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:background="@drawable/border_bottom"
+             android:gravity="center_vertical"
+             android:minHeight="60dp" >
+
+             <TextView
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_marginLeft="10dp"
+                 android:text="官方微信"
+                  android:textColor="@color/thick_grey"
+                 android:textSize="18sp" />
+             
+             <TextView
+                 android:id="@+id/tv_wechat"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_alignParentRight="true"
+                 android:layout_marginRight="10dp"
+                 android:text="微信号：banhuitong"
+                 android:textColor="@color/blue"
+                 android:textSize="18sp" />
+         </RelativeLayout> 
+         
+         <RelativeLayout
+             android:id="@+id/layer_expenditure"
+             android:descendantFocusability="blocksDescendants"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:layout_below="@+id/layer_repay"
+             android:background="@drawable/border_bottom"
+             android:gravity="center_vertical"
+             android:minHeight="60dp" >
+
+             <TextView
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_marginLeft="10dp"
+                 android:text="官方微博"
+                 android:textColor="@color/thick_grey"
+                 android:textSize="18sp" />
+             
+             <TextView
+                 android:id="@+id/tv_weibo"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_alignParentRight="true"
+                 android:layout_marginRight="10dp"
+                 android:text="weibo.com/banhuit"
+                 android:textColor="@color/blue"
+                 android:textSize="18sp" />
+         </RelativeLayout> 
+         
+         <RelativeLayout
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:background="@drawable/border_bottom"
+             android:gravity="center_vertical"
+             android:minHeight="60dp" >
+
+             <TextView
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_marginLeft="10dp"
+                 android:text="媒体合作"
+                 android:textColor="@color/thick_grey"
+                 android:textSize="18sp" />
+             
+             <TextView
+                 android:id="@+id/tv_partner"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_alignParentRight="true"
+                 android:layout_marginRight="10dp"
+                 android:text="pr@banbank.com"
+                 android:textColor="@color/blue"
+                 android:textSize="18sp" />
+         </RelativeLayout>
+         
+         <RelativeLayout
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:background="@drawable/border_bottom"
+             android:gravity="center_vertical"
+             android:minHeight="70dp" >
+
+             <TextView
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_marginLeft="10dp"
+                 
+                 android:text="客服电话"
+                 android:textColor="@color/thick_grey"
+                 android:textSize="18sp" />
+             
+             <TextView
+                 android:id="@+id/tv_tel"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_alignParentRight="true"
+                 android:layout_marginRight="10dp"
+                 android:text="400-851-1888"
+                 android:textColor="#B22222"
+                 android:textSize="18sp" />
+             
+             <TextView
+                 android:id="@+id/tv_worktime"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_alignParentRight="true"
+                 android:layout_below="@+id/tv_tel"
+                 android:layout_marginRight="10dp"
+                 android:text="客服工作时间：9：00~21：00"
+                 android:textColor="@color/grey"
+                 android:textSize="13sp" />
+
+         </RelativeLayout>
+         
+         <RelativeLayout
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:background="@drawable/border_bottom"
+             android:gravity="center_vertical"
+             android:minHeight="60dp" 
+             android:visibility="gone"
+           >
+
+             <TextView
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_marginLeft="10dp"
+                 android:layout_marginTop="10dp"
+                 android:text="公司位置"
+                 android:textColor="@color/thick_grey"
+                 android:textSize="18sp" />
+             
+              <TextView
+                 android:id="@+id/tv_location_icon"
+                 android:layout_width="wrap_content"
+                 android:layout_height="match_parent"
+                 android:layout_alignParentRight="true"
+                 android:layout_marginRight="20dp"
+                 android:background="@drawable/icon_gcoding"/>
+         </RelativeLayout>
+         
+         <RelativeLayout
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:background="@drawable/border_bottom"
+             android:gravity="center_vertical"
+             android:minHeight="60dp" 
+             android:visibility="gone"
+           >
+
+             <TextView
+                 android:id="@+id/tv_test"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_marginLeft="10dp"
+                 android:layout_marginTop="10dp"
+                 android:text="测试"
+                 android:textColor="@color/thick_grey"
+                 android:textSize="18sp" />
+         </RelativeLayout>
+
+	</LinearLayout>
+	</com.banhuitong.view.MyScrollView>
+	
+</RelativeLayout>

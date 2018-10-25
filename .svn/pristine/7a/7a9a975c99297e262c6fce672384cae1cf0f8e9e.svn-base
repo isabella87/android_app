@@ -1,0 +1,278 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#DCDCDC"
+    android:orientation="vertical" >
+
+    <!-- 顶部 -->
+     <com.banhuitong.view.TopBarView 
+          android:id="@+id/topbar" 
+           android:layout_width="wrap_content" 
+           android:layout_height="wrap_content" />   
+    
+    <!-- 中间 -->
+ 	<ScrollView
+ 	    android:id="@+id/scroll_view"
+ 	    android:layout_below="@+id/topbar"
+ 	    android:layout_width="match_parent"
+ 	    android:layout_height="wrap_content" >
+	    
+     <RelativeLayout
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+            android:orientation="vertical" >
+         
+         <RelativeLayout
+             android:id="@+id/layer_invest"
+             android:descendantFocusability="blocksDescendants"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:background="@drawable/border_bottom"
+             android:gravity="center_vertical"
+             android:minHeight="60dp" >
+
+             <TextView
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_marginLeft="10dp"
+                 android:text="出借"
+                 android:textColor="#000000"
+                 android:textSize="18sp" />
+             
+             <TextView
+                 android:id="@+id/tv_invest"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_alignParentRight="true"
+                 android:layout_marginRight="30dp"
+                 android:text="--"
+                 android:textColor="#B22222"
+                 android:textSize="18sp" />
+             
+             <TextView
+                 android:layout_width="wrap_content"
+                 android:layout_height="match_parent"
+                 android:layout_alignParentRight="true"
+                 android:layout_alignParentTop="true"
+                 android:layout_marginRight="10dp"
+                 android:background="@drawable/arrow"
+                 android:textColor="#000000"
+                 android:textSize="20sp" />
+         </RelativeLayout> 
+         
+         <RelativeLayout
+             android:id="@+id/layer_repay"
+             android:descendantFocusability="blocksDescendants"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:layout_below="@+id/layer_invest"
+             android:background="@drawable/border_bottom"
+             android:gravity="center_vertical"
+             android:minHeight="60dp" >
+
+             <TextView
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_marginLeft="10dp"
+                 android:text="还款"
+                 android:textColor="#000000"
+                 android:textSize="18sp" />
+             
+             <TextView
+                 android:id="@+id/tv_repay"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_alignParentRight="true"
+                 android:layout_marginRight="30dp"
+                 android:text="--"
+                 android:textColor="#B22222"
+                 android:textSize="18sp" />
+             
+			<TextView
+                 android:layout_width="wrap_content"
+                 android:layout_height="match_parent"
+                 android:layout_alignParentRight="true"
+                 android:layout_alignParentTop="true"
+                 android:layout_marginRight="10dp"
+                 android:background="@drawable/arrow"
+                 android:textColor="#000000"
+                 android:textSize="20sp" />
+         </RelativeLayout> 
+         
+         <RelativeLayout
+             android:id="@+id/layer_expenditure"
+             android:descendantFocusability="blocksDescendants"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:layout_below="@+id/layer_repay"
+             android:background="@drawable/border_bottom"
+             android:gravity="center_vertical"
+             android:minHeight="60dp" >
+
+             <TextView
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_marginLeft="10dp"
+                 android:text="支出"
+                 android:textColor="#000000"
+                 android:textSize="18sp" />
+             
+             <TextView
+                 android:id="@+id/tv_expenditure"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_alignParentRight="true"
+                 android:layout_marginRight="30dp"
+                 android:text="--"
+                 android:textColor="#B22222"
+                 android:textSize="18sp" />
+             
+			<TextView
+                 android:layout_width="wrap_content"
+                 android:layout_height="match_parent"
+                 android:layout_alignParentRight="true"
+                 android:layout_alignParentTop="true"
+                 android:layout_marginRight="10dp"
+                 android:background="@drawable/arrow"
+                 android:textColor="#000000"
+                 android:textSize="20sp" />
+         </RelativeLayout> 
+         
+         <RelativeLayout
+             android:id="@+id/layer_bonus"
+             android:descendantFocusability="blocksDescendants"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:layout_below="@+id/layer_expenditure"
+             android:background="@drawable/border_bottom"
+             android:gravity="center_vertical"
+             android:minHeight="60dp" >
+
+             <TextView
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_marginLeft="10dp"
+                 android:text="奖励"
+                 android:textColor="#000000"
+                 android:textSize="18sp" />
+             
+             <TextView
+                 android:id="@+id/tv_bonus"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_alignParentRight="true"
+                 android:layout_marginRight="30dp"
+                 android:text="--"
+                 android:textColor="#B22222"
+                 android:textSize="18sp" />
+
+             <TextView
+                 android:layout_width="wrap_content"
+                 android:layout_height="match_parent"
+                 android:layout_alignParentRight="true"
+                 android:layout_alignParentTop="true"
+                 android:layout_marginRight="10dp"
+                 android:background="@drawable/arrow"
+                 android:textColor="#000000"
+                 android:textSize="20sp" />
+         </RelativeLayout>
+         
+         <RelativeLayout
+             android:id="@+id/layer_recharge"
+             android:descendantFocusability="blocksDescendants"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:layout_below="@+id/layer_bonus"
+             android:background="@drawable/border_bottom"
+             android:gravity="center_vertical"
+             android:minHeight="60dp" >
+
+             <TextView
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_marginLeft="10dp"
+                 android:text="充值"
+                 android:textColor="#000000"
+                 android:textSize="18sp" />
+             
+             <TextView
+                 android:id="@+id/tv_recharge"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_alignParentRight="true"
+                 android:layout_marginRight="30dp"
+                 android:text="--"
+                 android:textColor="#B22222"
+                 android:textSize="18sp" />
+
+             <TextView
+                 android:layout_width="wrap_content"
+                 android:layout_height="match_parent"
+                 android:layout_alignParentRight="true"
+                 android:layout_alignParentTop="true"
+                 android:layout_marginRight="10dp"
+                 android:background="@drawable/arrow"
+                 android:textColor="#000000"
+                 android:textSize="20sp" />
+         </RelativeLayout>
+         
+         <RelativeLayout
+             android:id="@+id/layer_withdraw"
+             android:descendantFocusability="blocksDescendants"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:layout_below="@+id/layer_recharge"
+             android:background="@drawable/border_bottom"
+             android:gravity="center_vertical"
+             android:minHeight="60dp" >
+
+             <TextView
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_marginLeft="10dp"
+                 android:text="提现"
+                 android:textColor="#000000"
+                 android:textSize="18sp" />
+             
+             <TextView
+                 android:id="@+id/tv_withdraw"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_alignParentRight="true"
+                 android:layout_marginRight="30dp"
+                 android:text="--"
+                 android:textColor="#B22222"
+                 android:textSize="18sp" />
+
+             <TextView
+                 android:layout_width="wrap_content"
+                 android:layout_height="match_parent"
+                 android:layout_alignParentRight="true"
+                 android:layout_alignParentTop="true"
+                 android:layout_marginRight="10dp"
+                 android:background="@drawable/arrow"
+                 android:textColor="#000000"
+                 android:textSize="20sp" />
+         </RelativeLayout>
+         
+         <RelativeLayout
+             android:id="@+id/layer_notice"
+             android:layout_below="@+id/layer_withdraw"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:gravity="center_vertical"
+             android:minHeight="60dp" >
+
+             <TextView
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_margin="20dp"
+                 android:text="为了您的资金安全，手机暂时不支持充值操作，请在电脑上登录班汇通官网进行充值操作。"
+                 android:textColor="@color/dark_red"
+                 android:textSize="18sp" />
+             
+         </RelativeLayout>
+	</RelativeLayout>
+	</ScrollView>
+	
+</RelativeLayout>

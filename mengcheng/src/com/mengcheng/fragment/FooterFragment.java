@@ -1,0 +1,164 @@
+package com.mengcheng.fragment;
+
+
+import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.app.Fragment;
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+
+import com.mengcheng.activity.LoginActivity;
+import com.mengcheng.activity.MyApplication;
+import com.mengcheng.activity.R;
+import com.mengcheng.util.Constants;
+
+@SuppressLint("NewApi")
+public class FooterFragment extends Fragment {
+
+	public ImageView imgMyAccount;
+	public ImageView imgIndex;
+	public ImageView imgMain;
+	public ImageView imgMore;
+	private Activity activity;
+	private LinearLayout llMyAccount;
+	private LinearLayout llIndex;
+	private LinearLayout llMain;
+	private LinearLayout llMore;
+
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+			Bundle savedInstanceState) {
+		View view = inflater.inflate(R.layout.footer, container, true);
+		imgMyAccount = (ImageView) view.findViewById(R.id.img_acc);
+		imgIndex = (ImageView) view.findViewById(R.id.img_index);
+		imgMain = (ImageView) view.findViewById(R.id.img_main);
+		imgMore = (ImageView) view.findViewById(R.id.img_more);
+		
+		
+		llMyAccount = (LinearLayout) view.findViewById(R.id.ll_acc);
+		llIndex = (LinearLayout) view.findViewById(R.id.ll_index);
+		llMain = (LinearLayout) view.findViewById(R.id.ll_main);
+		llMore = (LinearLayout) view.findViewById(R.id.ll_more);
+		return view;
+	}
+
+	@Override
+	public void onStart() {
+		super.onStart();
+		setListener();
+		initImage();
+
+		/*
+		 * 
+		if (activity instanceof LoginActivity) {
+			if(((LoginActivity) activity).pager.getCurrentItem()==0){
+				imgIndex.setBackgroundResource(R.drawable.footer_home_highlight); 
+			}else if(((LoginActivity) activity).pager.getCurrentItem()==1){			
+				imgMain.setBackgroundResource(R.drawable.footer_product_highlight);
+			}else if(((LoginActivity) activity).pager.getCurrentItem()==2){
+				imgMyAccount.setBackgroundResource(R.drawable.footer_myaccount_highlight);
+			}else if(((LoginActivity) activity).pager.getCurrentItem()==3){
+				imgMore.setBackgroundResource(R.drawable.footer_more_highlight);
+			}
+		}
+*/
+		LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
+				MyApplication.screen_w / 15, MyApplication.screen_h / 25);
+		imgMyAccount.setLayoutParams(layoutParams);
+		imgIndex.setLayoutParams(layoutParams);
+		imgMain.setLayoutParams(layoutParams);
+		imgMore.setLayoutParams(layoutParams);
+		imgMyAccount.setBackgroundResource(R.drawable.footer_myaccount_highlight);
+		
+	}
+
+	@Override
+	public void onAttach(Activity activity) {
+		super.onAttach(activity);
+		this.activity = activity;
+	}
+
+	private void setListener() {
+		llMyAccount.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				
+				if (activity instanceof LoginActivity) {
+					imgIndex.setBackgroundResource(R.drawable.footer_home);
+					imgMain.setBackgroundResource(R.drawable.footer_product);
+					imgMore.setBackgroundResource(R.drawable.footer_more);
+					imgMyAccount.setBackgroundResource(R.drawable.footer_myaccount_highlight);
+					
+						String url = Constants.mobileUrl + "account/accountment.html";
+						((LoginActivity) activity).newpath(url);
+						return;
+
+				}
+			}
+		});
+
+		llIndex.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+					if (activity instanceof LoginActivity) {
+						imgMyAccount
+						.setBackgroundResource(R.drawable.footer_myaccount);
+						imgMain.setBackgroundResource(R.drawable.footer_product);
+						imgMore.setBackgroundResource(R.drawable.footer_more);
+						imgIndex.setBackgroundResource(R.drawable.footer_home_highlight);
+						String url = Constants.mobileUrl + "index.html";
+						((LoginActivity) activity).newpath(url);
+					}
+			}
+		});
+
+		llMain.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+					if (activity instanceof LoginActivity) {
+						System.out.println(((LoginActivity) activity).isLogin()+"555");
+							imgMyAccount
+							.setBackgroundResource(R.drawable.footer_myaccount);
+							imgIndex.setBackgroundResource(R.drawable.footer_home);
+							imgMore.setBackgroundResource(R.drawable.footer_more);
+							imgMain.setBackgroundResource(R.drawable.footer_product_highlight);
+							String url = Constants.mobileUrl + "worker/soldier-list.html";
+							((LoginActivity) activity).newpath(url);
+
+					}
+			}
+		});
+
+		llMore.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				if (activity instanceof LoginActivity) {
+					imgMyAccount
+					.setBackgroundResource(R.drawable.footer_myaccount);
+					imgIndex.setBackgroundResource(R.drawable.footer_home);
+					imgMain.setBackgroundResource(R.drawable.footer_product);
+					imgMore.setBackgroundResource(R.drawable.footer_more_highlight);
+						String url = Constants.mobileUrl + "info/more-info.html";
+						((LoginActivity) activity).newpath(url);
+					}
+			}
+		});
+	}
+
+	private void initImage() {
+		imgMyAccount.setBackgroundResource(R.drawable.footer_myaccount);
+		imgIndex.setBackgroundResource(R.drawable.footer_home);
+		imgMain.setBackgroundResource(R.drawable.footer_product);
+		imgMore.setBackgroundResource(R.drawable.footer_more);
+
+		imgMyAccount.setLayoutParams(new LinearLayout.LayoutParams(40, 40));
+		imgIndex.setLayoutParams(new LinearLayout.LayoutParams(40, 40));
+		imgMain.setLayoutParams(new LinearLayout.LayoutParams(40, 40));
+		imgMore.setLayoutParams(new LinearLayout.LayoutParams(40, 40));
+	}
+}

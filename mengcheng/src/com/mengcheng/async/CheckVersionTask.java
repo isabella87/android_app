@@ -1,0 +1,68 @@
+package com.mengcheng.async;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.apache.http.client.utils.URLEncodedUtils;
+import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import android.os.Handler;
+import android.os.Message;
+import android.util.Log;
+
+import com.mengcheng.http.RequestService;
+import com.mengcheng.item.ApkInfoItem;
+import com.mengcheng.util.Constants;
+import com.mengcheng.util.HttpUtils;
+import com.mengcheng.util.Urls;
+/**
+ * 相关信息准备
+ * @author Administrator
+ *
+ */
+public class CheckVersionTask implements Runnable {
+	
+	private static final String TAG = "CheckVersionTask" ;  
+	private Handler handler;
+	
+	public CheckVersionTask(Handler handler) {
+		super();
+		this.handler = handler;
+	}
+
+	@Override  
+    public void run() {  
+//		String path = Constants.serverUrlp2p + "app/apk-info";
+		String path = Urls.URL_14;
+		
+		Map<String, String> map = new HashMap<String, String>();
+
+	   	List<BasicNameValuePair> params = HttpUtils.setParams(map);
+
+	   	Log.i(TAG, path);
+		
+		ApkInfoItem apk = new ApkInfoItem();
+		try {
+			String jsonStr = RequestService.getInstance().getRequest(params, path, new HashMap<String, String>());
+		   	JSONObject jsonObject = new JSONObject(jsonStr);
+		   	
+			apk.setApkPath(jsonObject.getString("apkPath"));
+			apk.setVersion(jsonObject.getString("apkVersion"));
+		} catch (Exception e) {
+			e.printStackTrace();
+			Message msg = new Message();
+			msg.obj = apk;
+			msg.what = Constants.GET_UPDATEINFO_ERROR;
+			handler.sendMessage(msg);
+			return;
+		}
+		
+		Message msg = new Message();
+		msg.obj = apk;
+		msg.what = Constants.UPDATE_CLIENT;
+		handler.sendMessage(msg);
+    }  
+}

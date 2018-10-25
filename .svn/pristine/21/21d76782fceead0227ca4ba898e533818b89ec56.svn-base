@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" path="gen"/>
+	<classpathentry kind="con" path="com.android.ide.eclipse.adt.ANDROID_FRAMEWORK"/>
+	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.LIBRARIES"/>
+	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.DEPENDENCIES"/>
+	<classpathentry exported="true" kind="lib" path="libs/commons-codec-1.9.jar"/>
+	<classpathentry exported="true" kind="lib" path="libs/commons-collections4-4.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="libs/commons-lang3-3.3.2.jar"/>
+	<classpathentry exported="true" kind="lib" path="libs/core.jar"/>
+	<classpathentry exported="true" kind="lib" path="libs/cpauth_android_1.0.0_lib.jar"/>
+	<classpathentry exported="true" kind="lib" path="libs/fastjson-1.2.10.jar"/>
+	<classpathentry exported="true" kind="lib" path="libs/GetuiExt-2.0.3.jar"/>
+	<classpathentry exported="true" kind="lib" path="libs/GetuiSDK2.8.1.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="libs/httpmime-4.1.2.jar"/>
+	<classpathentry exported="true" kind="lib" path="libs/Sunflower.jar"/>
+	<classpathentry exported="true" kind="lib" path="/share-sdk/libs/MobCommons.jar"/>
+	<classpathentry exported="true" kind="lib" path="/share-sdk/libs/MobTools.jar"/>
+	<classpathentry exported="true" kind="lib" path="/share-sdk/libs/ShareSDK-Core-2.6.5.jar"/>
+	<classpathentry exported="true" kind="lib" path="/share-sdk/libs/ShareSDK-QQ-2.6.5.jar"/>
+	<classpathentry exported="true" kind="lib" path="/share-sdk/libs/ShareSDK-QZone-2.6.5.jar"/>
+	<classpathentry exported="true" kind="lib" path="/share-sdk/libs/ShareSDK-Wechat-2.6.5.jar"/>
+	<classpathentry exported="true" kind="lib" path="/share-sdk/libs/ShareSDK-Wechat-Core-2.6.5.jar"/>
+	<classpathentry exported="true" kind="lib" path="/share-sdk/libs/ShareSDK-Wechat-Moments-2.6.5.jar"/>
+	<classpathentry exported="true" kind="lib" path="libs/android-support-v4.jar"/>
+	<classpathentry kind="output" path="bin/classes"/>
+</classpath>

@@ -1,0 +1,491 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#DCDCDC"
+    android:orientation="vertical" >
+
+    <!-- 顶部 -->
+	<com.banhuitong.view.TopBarView 
+          android:id="@+id/topbar" 
+           android:layout_width="wrap_content" 
+           android:layout_height="wrap_content" />  
+    
+    <!-- 中间 -->
+    <ScrollView
+	    android:id="@+id/scroll_view"
+	    android:layout_below="@+id/topbar"
+	    android:layout_above="@+id/ll_bottom"
+	    android:layout_width="match_parent"   
+	    android:layout_height="wrap_content"
+	    android:scrollbars="vertical" > 
+     <LinearLayout
+        android:id="@+id/ll_main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:padding="10dp">
+        
+          <LinearLayout
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="horizontal"
+              android:paddingLeft="10dp" >
+
+         <TextView
+             android:id="@+id/tv_item_no"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:paddingRight="20dp"
+             android:text=""
+             android:textColor="@color/blue"
+             android:textSize="16sp" />
+         
+          <TextView
+              android:id="@+id/tv_item_show_name"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text=""
+              android:textColor="#000000"
+              android:textSize="16sp" />
+
+    </LinearLayout>
+    
+        <LinearLayout
+	        android:layout_width="match_parent"
+	        android:layout_height="10dp"
+	        android:orientation="horizontal" 
+	        android:paddingTop="3dp"
+	        android:paddingLeft="10dp"
+	        android:paddingRight="10dp">
+	        <View android:layout_height="3px" android:background="#CCCCCC" android:layout_width="fill_parent"></View> 
+		</LinearLayout>
+
+         <RelativeLayout
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:paddingBottom="5dp"
+             android:paddingLeft="10dp"
+             android:paddingRight="10dp" >
+             
+             <TextView
+                 android:id="@+id/TextView03"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_alignBottom="@+id/tv_remaining_days"
+                 android:layout_alignParentRight="true"
+                 android:layout_alignParentTop="true"
+                 android:gravity="center_vertical"
+                 android:text="天"
+                 android:textColor="@color/black"
+                 android:textSize="16sp" />
+
+             <TextView
+                 android:id="@+id/tv_remaining_days"
+                 android:layout_width="150dp"
+                 android:layout_height="wrap_content"
+                 android:layout_alignParentBottom="true"
+                 android:layout_alignParentRight="true"
+                 android:layout_marginRight="20dp"
+                 android:background="@color/white"
+                 android:focusableInTouchMode="true"
+                 android:gravity="center_vertical|right"
+                 android:padding="5dp"
+                 android:text="--"
+                 android:textColor="@color/dark_green"
+                 android:textSize="16sp" />
+
+             <TextView
+                 android:id="@+id/TextView02"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_alignParentLeft="true"
+                 android:layout_centerVertical="true"
+                 android:text="剩余借款天数"
+                 android:textColor="@color/black"
+                 android:textSize="16sp" />
+
+         </RelativeLayout>
+
+         <RelativeLayout
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:paddingBottom="5dp"
+             android:paddingLeft="10dp"
+             android:paddingRight="10dp" >
+             
+              <TextView
+                  android:id="@+id/TextView01"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_alignBottom="@+id/tv_ori_money_rate"
+                  android:layout_alignParentRight="true"
+                  android:layout_alignParentTop="true"
+                  android:gravity="center_vertical"
+                  android:text="%"
+                  android:textColor="@color/black"
+                  android:textSize="16sp" />
+
+              <TextView
+                  android:id="@+id/tv_ori_money_rate"
+                  android:layout_width="150dp"
+                  android:layout_height="wrap_content"
+                  android:layout_alignParentBottom="true"
+                  android:layout_alignParentRight="true"
+                  android:layout_marginRight="20dp"
+                  android:background="@color/white"
+                  android:gravity="right"
+                  android:padding="5dp"
+                  android:text="--"
+                  android:textColor="@color/dark_red"
+                  android:textSize="16sp" />
+
+              <TextView
+                  android:id="@+id/textView1"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_alignParentLeft="true"
+                  android:layout_centerVertical="true"
+                  android:text="原借款年利率"
+                  android:textColor="@color/black"
+                  android:textSize="16sp" />
+
+        </RelativeLayout>
+
+         <RelativeLayout
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:paddingBottom="5dp"
+             android:paddingLeft="10dp"
+             android:paddingRight="10dp" >
+
+             <TextView
+                 android:id="@+id/tv_unpaid"
+                 android:layout_width="150dp"
+                 android:layout_height="wrap_content"
+                 android:layout_alignParentBottom="true"
+                 android:layout_alignParentRight="true"
+                 android:layout_marginRight="20dp"
+                 android:background="@color/white"
+                 android:gravity="right"
+                 android:padding="5dp"
+                 android:text="--"
+                 android:textColor="@color/dark_red"
+                 android:textSize="16sp" />
+
+             <TextView
+                 android:id="@+id/TextView04"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_alignParentLeft="true"
+                 android:layout_centerVertical="true"
+                 android:text="待收本息"
+                 android:textColor="@color/black"
+                 android:textSize="16sp" />
+
+             <TextView
+                 android:id="@+id/TextView05"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_alignBaseline="@+id/tv_unpaid"
+                 android:layout_alignBottom="@+id/tv_unpaid"
+                 android:layout_alignParentRight="true"
+                 android:text="元"
+                 android:textColor="@color/black"
+                 android:textSize="16sp" />
+
+         </RelativeLayout>
+
+         <RelativeLayout
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:gravity="center_vertical"
+             android:paddingBottom="5dp"
+             android:focusable="true"
+             android:focusableInTouchMode="true"
+             android:paddingLeft="10dp"
+             android:paddingRight="10dp" >
+
+             <EditText
+                 android:id="@+id/et_waiting_days"
+                 android:layout_width="155dp"
+                 android:layout_height="40dp"
+                 android:layout_alignParentRight="true"
+                 android:layout_marginRight="18dp"
+                 android:gravity="center_vertical|right"
+                 android:inputType="number"
+                 android:textSize="16sp" />
+
+             <TextView
+                 android:id="@+id/textView2"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_alignBaseline="@+id/et_waiting_days"
+                 android:layout_alignBottom="@+id/et_waiting_days"
+                 android:layout_alignParentLeft="true"
+                 android:gravity="center_vertical"
+                 android:text="转让期"
+                 android:textColor="@color/black"
+                 android:textSize="16sp" />
+
+             <TextView
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_alignBaseline="@+id/et_waiting_days"
+                 android:layout_alignBottom="@+id/et_waiting_days"
+                 android:layout_alignParentRight="true"
+                 android:gravity="center_vertical"
+                 android:text="天"
+                 android:textColor="@color/black"
+                 android:textSize="16sp" />
+              
+         </RelativeLayout>
+         
+         <LinearLayout
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:gravity="center_horizontal"
+             android:orientation="vertical"
+             android:paddingBottom="5dp"
+             android:paddingTop="5dp" >
+
+             <RadioGroup
+                 android:id="@+id/rg_lock_type"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content" 
+                 android:orientation="horizontal" >
+
+                 <RadioButton
+                     android:id="@+id/rb_lock_rate"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:layout_marginRight="30dp"
+                     android:checked="true"
+                     android:text="锁定\n折算借款年利率"
+                     android:textColor="@color/blue" />
+
+                 <RadioButton
+                     android:id="@+id/rb_lock_amt"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:text="锁定\n转让标价"
+                     android:textColor="@color/blue" />
+             </RadioGroup>
+         </LinearLayout>
+         
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="5dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp" >
+
+            <EditText
+                android:id="@+id/et_assign_rate"
+                android:layout_width="155dp"
+                android:layout_height="40dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="18dp"
+                android:gravity="right"
+                android:inputType="numberDecimal"
+                android:textColor="@color/dark_red"
+                android:textSize="16sp" >
+
+            </EditText>
+
+            <TextView
+                android:id="@+id/tv_assign_rate"
+                android:layout_width="150dp"
+                android:layout_height="40dp"
+                android:layout_alignBottom="@+id/et_assign_rate"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginRight="20dp"
+                android:background="@color/white"
+                android:layout_centerVertical="true"
+                android:gravity="center_vertical|right"
+                android:padding="5dp"
+                android:textColor="@color/dark_red"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:text="%"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/textView3"
+                android:layout_centerVertical="true"
+                android:text="折算借款年利率"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+        </RelativeLayout>
+             
+             <RelativeLayout
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:paddingBottom="5dp"
+                 android:paddingLeft="10dp"
+                 android:paddingRight="10dp" >
+
+                 <EditText
+                     android:id="@+id/et_assign_amt"
+                     android:layout_width="155dp"
+                     android:layout_height="40dp"
+                     android:layout_alignParentRight="true"
+                     android:layout_centerVertical="true"
+                     android:layout_marginRight="18dp"
+                     android:gravity="center_vertical|right"
+                     android:inputType="number"
+                     android:textColor="@color/dark_red"
+                     android:textSize="16sp" >
+
+                 </EditText>
+
+                 <TextView
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:layout_alignParentRight="true"
+                     android:layout_centerVertical="true"
+                     android:text="元"
+                     android:textColor="@color/black"
+                     android:textSize="16sp" />
+
+                 <TextView
+                     android:id="@+id/tv_assign_amt"
+                     android:layout_width="150dp"
+                     android:layout_height="40dp"
+                     android:layout_alignBottom="@+id/et_assign_amt"
+                     android:layout_alignParentRight="true"
+                     android:layout_alignParentTop="true"
+                     android:layout_marginRight="20dp"
+                     android:background="@color/white"
+                     android:layout_centerVertical="true"
+                     android:gravity="right|center_vertical"
+                     android:padding="5dp"
+                     android:textColor="@color/dark_red"
+                     android:textSize="16sp" />
+
+                 <TextView
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:layout_centerVertical="true"
+                     android:text="转让标价"
+                     android:textColor="@color/black"
+                     android:textSize="16sp" />
+             </RelativeLayout>
+             
+         <RelativeLayout
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:gravity="center_vertical"
+             android:paddingLeft="10dp"
+             android:paddingRight="10dp" >
+
+	    <EditText
+	        android:id="@+id/et_mobile_code"
+	        android:layout_width="155dp"
+	        android:layout_height="40dp"
+	        android:layout_alignParentRight="true"
+	        android:layout_marginRight="18dp"
+	        android:inputType="number"
+	        android:textSize="16sp" />
+
+	    <TextView
+	        android:id="@+id/tv_mobile_code"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_alignParentLeft="true"
+	        android:layout_centerVertical="true"
+	        android:background="@drawable/button_style"
+	        android:padding="3dp"
+	        android:text="发送验证码"
+	        android:textColor="#FFFAFA"
+	        android:textSize="18sp" />
+
+        </RelativeLayout>
+        
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp" >
+
+	    <EditText
+	        android:id="@+id/et_password"
+	        android:layout_width="155dp"
+	        android:layout_height="40dp"
+	        android:layout_alignParentRight="true"
+	        android:layout_marginRight="18dp"
+	        android:textSize="16sp" 
+			android:inputType="textPassword" />
+
+	    <TextView
+	        android:id="@+id/textView4"
+	        android:layout_width="wrap_content"
+	        android:layout_height="40dp"
+	        android:layout_alignParentLeft="true"
+	        android:layout_centerVertical="true"
+	        android:gravity="center_vertical"
+	        android:text="登录密码"
+	        android:textColor="@color/black"
+	        android:textSize="16sp" />
+	    
+        </RelativeLayout>
+        
+          <LinearLayout
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:visibility="gone"
+              android:gravity="center_horizontal"
+              android:orientation="horizontal" >
+
+              <CheckBox
+                  android:id="@+id/chk_agreement"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:checked="true"
+                  android:text="已阅读并同意"
+                  android:textColor="#000000" />
+              
+               <TextView
+                   android:id="@+id/tv_agreement"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="《转让协议》"
+                   android:textColor="@color/dark_red"
+                   android:textSize="16sp" />
+	  
+        </LinearLayout>
+         
+	</LinearLayout>
+	</ScrollView>
+	
+     <LinearLayout
+            android:id="@+id/ll_bottom"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:orientation="horizontal"
+	        android:layout_alignParentBottom="true"
+	        android:padding="10dp">
+
+              <TextView
+	             android:id="@+id/tv_apply"
+	             android:layout_width="match_parent"
+	             android:layout_height="wrap_content"
+	             android:gravity="center"
+	             android:padding="5dp"
+	             android:text="提交申请"
+	             android:textColor="#FFFAFA"
+	             android:background="@drawable/button_style"
+	             android:textSize="20sp" />
+	  
+        </LinearLayout>
+</RelativeLayout>
